@@ -14,7 +14,7 @@ namespace AgentPortal.Services
             UpdateTariffPlan();
         }
 
-        protected void DeleteTariffPlan(Tarrif tarrif)
+        protected static void DeleteTariffPlan(Tarrif tarrif)
         {
             tariffs.Remove(tarrif);
             UpdateTariffPlan();

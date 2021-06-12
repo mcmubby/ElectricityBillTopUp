@@ -7,9 +7,11 @@ namespace AgentPortal.Menu
     {
         public static void PrintAllTariffPlans()
         {
+            Console.WriteLine($"Tariff ID \t\t\tTariff Name \t\t\t\tPrice Per Unit");
+
             foreach (var tariff in tariffs)
             {
-                Console.WriteLine($"Tariff ID : {tariff.Id} \nTariff Name : {tariff.Name} \nPrice Per Unit : {tariff.PricePerUnit}\n\n--------\t\t----------\n");
+                Console.WriteLine($"\n{tariff.Id} \t\t\t\t  {tariff.Name} \t\t\t\t\t\t {tariff.PricePerUnit}");
             }
         }
 
@@ -39,6 +41,9 @@ namespace AgentPortal.Menu
                     tariffs[i].PricePerUnit = editedPricePerUnit;
 
                     UpdateTariffPlan();
+                    Console.Clear();
+                    Console.WriteLine("Tariff updated. \n\nPress any key to go back...");
+                    Console.ReadKey();
                 }
                 else
                 {
@@ -56,7 +61,27 @@ namespace AgentPortal.Menu
 
         private static void DeleteTariff()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            PrintAllTariffPlans();
+
+            Console.Write("Enter the Tariff ID of the tariff you want to delete : ");
+            var response = Console.ReadLine();
+
+            var tariff = tariffs.Find(c => c.Id == response);
+
+            if (tariff != null)
+            {
+                DeleteTariffPlan(tariff);
+                Console.Clear();
+                Console.WriteLine("Tariff deleted. \n\nPress any key to go back...");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Tariff not found. \n\nPress any key to go back...");
+                Console.ReadKey();
+            }
         }
 
         private static void SelectAction()
