@@ -6,28 +6,23 @@ namespace AgentPortal.Services
 {
     public class TariffService : AgentLibraryService
     {
-        private static List<Tarrif> tariffs = new List<Tarrif>(service.GetAllTarrif());
-        
-        public static List<Tarrif> GetAllTariffs()
-        {
-            return tariffs;
-        }
+        protected static List<Tarrif> tariffs = new List<Tarrif>(service.GetAllTarrif());
 
-        public static void AddNewTariffPlan(Tarrif tarrif)
+        protected static void AddNewTariffPlan(Tarrif tarrif)
         {
             tariffs.Add(tarrif);
             UpdateTariffPlan();
         }
 
-        public void DeleteTariffPlan(Tarrif tarrif)
+        protected void DeleteTariffPlan(Tarrif tarrif)
         {
             tariffs.Remove(tarrif);
             UpdateTariffPlan();
         }
 
-        public static void UpdateTariffPlan()
+        protected static void UpdateTariffPlan()
         {
-            service.UpdateTariff(tariffs); //might be returning the intial fetched list
+            service.UpdateTariff(tariffs);
         }
     }
 }

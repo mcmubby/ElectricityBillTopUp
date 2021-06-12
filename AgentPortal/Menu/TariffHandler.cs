@@ -1,16 +1,13 @@
 using System;
-using System.Collections.Generic;
 using AgentPortal.Services;
-using PortalLibrary.Models;
 
 namespace AgentPortal.Menu
 {
     public class TariffHandler : TariffService
     {
-        private static List<Tarrif> availableTariff = new List<Tarrif>(GetAllTariffs());
         public static void PrintAllTariffPlans()
         {
-            foreach (var tariff in availableTariff)
+            foreach (var tariff in tariffs)
             {
                 Console.WriteLine($"Tariff ID : {tariff.Id} \nTariff Name : {tariff.Name} \nPrice Per Unit : {tariff.PricePerUnit}\n\n--------\t\t----------\n");
             }
@@ -24,13 +21,13 @@ namespace AgentPortal.Menu
             Console.Write("Enter the ID of the tariff you want to edit : ");
             var response = Console.ReadLine();
 
-            for (int i = 0; i < availableTariff.Count; i++)
+            for (int i = 0; i < tariffs.Count; i++)
             {
-                if (response == availableTariff[i].Id)
+                if (response == tariffs[i].Id)
                 {
                     Console.Clear();
                     decimal editedPricePerUnit = 0;
-                    Console.Write($"Enter a new price per unit for {availableTariff[i].Name} (Current value : {availableTariff[i].PricePerUnit}) : ");
+                    Console.Write($"Enter a new price per unit for {tariffs[i].Name} (Current value : {tariffs[i].PricePerUnit}) : ");
                     var newPricePerUnit = Console.ReadLine();
 
                     while (!decimal.TryParse(newPricePerUnit, out editedPricePerUnit))
@@ -39,7 +36,15 @@ namespace AgentPortal.Menu
                         newPricePerUnit = Console.ReadLine();
                     }
 
-                    availableTariff[i].PricePerUnit = editedPricePerUnit;
+                    tariffs[i].PricePerUnit = editedPricePerUnit;
+
+                    UpdateTariffPlan();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Tariff not found. \n\nPress any key to go back...");
+                    Console.ReadKey();
                 }
             }
         }
