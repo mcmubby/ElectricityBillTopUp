@@ -105,6 +105,12 @@ namespace PortalLibrary.AgentServices
             return tarrifList;
         }
 
+        public void UpdateTariff(List<Tarrif> tariffs)
+        {
+            fileService.database.Tariffs = tariffs;
+            fileService.SaveChanges();
+        }
+
         public void DeleteCustomer(Customer customer)
         {
             customer.IsDeleted = true;
