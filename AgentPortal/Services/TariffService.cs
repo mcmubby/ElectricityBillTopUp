@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using PortalLibrary.Models;
 
@@ -8,8 +7,15 @@ namespace AgentPortal.Services
     {
         protected static List<Tarrif> tariffs = new List<Tarrif>(service.GetAllTarrif());
 
-        protected static void AddNewTariffPlan(Tarrif tarrif)
+        protected static void AddNewTariffPlan(string id, string name, decimal pricePerUnit)
         {
+            Tarrif tarrif = new Tarrif
+            {
+                Id = id,
+                Name = name,
+                PricePerUnit = pricePerUnit
+            };
+
             tariffs.Add(tarrif);
             UpdateTariffPlan();
         }

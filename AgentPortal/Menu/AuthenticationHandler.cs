@@ -196,7 +196,7 @@ namespace AgentPortal.Menu
         }
 
 
-        private static string ValidateUserInput(string value, string fieldName)
+        public static string ValidateUserInput(string value, string fieldName)
         {
             while (value == "")
             {

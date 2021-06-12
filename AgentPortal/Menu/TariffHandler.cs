@@ -7,7 +7,7 @@ namespace AgentPortal.Menu
     {
         public static void PrintAllTariffPlans()
         {
-            Console.WriteLine($"Tariff ID \t\t\tTariff Name \t\t\t\tPrice Per Unit");
+            Console.WriteLine($"Tariff ID \t\t\t Tariff Name \t\t\t\t Price Per Unit");
 
             foreach (var tariff in tariffs)
             {
@@ -28,17 +28,10 @@ namespace AgentPortal.Menu
                 if (response == tariffs[i].Id)
                 {
                     Console.Clear();
-                    decimal editedPricePerUnit = 0;
                     Console.Write($"Enter a new price per unit for {tariffs[i].Name} (Current value : {tariffs[i].PricePerUnit}) : ");
                     var newPricePerUnit = Console.ReadLine();
 
-                    while (!decimal.TryParse(newPricePerUnit, out editedPricePerUnit))
-                    {
-                        Console.Write("Enter a valid input : ");
-                        newPricePerUnit = Console.ReadLine();
-                    }
-
-                    tariffs[i].PricePerUnit = editedPricePerUnit;
+                    tariffs[i].PricePerUnit = ValidatePricePerUnit(newPricePerUnit);
 
                     UpdateTariffPlan();
                     Console.Clear();
@@ -56,7 +49,26 @@ namespace AgentPortal.Menu
 
         private static void AddTariffPlan()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+
+            Console.Write("Enter Tariff ID : ");
+            var tariffId = Console.ReadLine();
+            var id = AuthenticationHandler.ValidateUserInput(tariffId, "Tariff ID");
+
+            Console.Write("\nEnter Tariff Name : ");
+            var tariffName = Console.ReadLine();
+            var name = AuthenticationHandler.ValidateUserInput(tariffName, "Tariff Name");
+
+            Console.Write("\nEnter Tariff Price Per Unit : ");
+            var tariffPricePerUnit = Console.ReadLine();
+            var pricePerUnit = ValidatePricePerUnit(tariffPricePerUnit);
+
+            AddNewTariffPlan(id,name,pricePerUnit);
+
+            Console.Clear();
+            PrintAllTariffPlans();
+            Console.WriteLine("\n\nTariff added successfully. \n\nPress any key to go back...");
+            Console.ReadKey();
         }
 
         private static void DeleteTariff()
@@ -106,6 +118,19 @@ namespace AgentPortal.Menu
                 default:
                 break;
             }
+        }
+
+        private static decimal ValidatePricePerUnit(string userValue)
+        {
+            decimal checkedPricePerUnit = 0;
+
+            while (!decimal.TryParse(userValue, out checkedPricePerUnit))
+            {
+                Console.Write("Enter a valid input : ");
+                userValue = Console.ReadLine();
+            }
+
+            return checkedPricePerUnit;
         }
     }
 }
