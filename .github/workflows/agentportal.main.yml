@@ -23,7 +23,11 @@ jobs:
         dotnet restore
       
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: |
+        cd ./AgentPortal
+        dotnet build --configuration Release --no-restore
 
     - name: Publish
-      run: dotnet publish
+      run: |
+        cd ./AgentPortal
+        dotnet publish
