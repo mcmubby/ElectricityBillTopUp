@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using CustomerPortal.Menu;
 using CustomerPortal.Services;
 using PortalLibrary.Models;
 
-namespace CustomerPortal.Menu
+namespace CustomerPortal.Handler
 {
     public class SubscriptionHandler : SubscriptionService
     {

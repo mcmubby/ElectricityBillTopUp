@@ -1,7 +1,8 @@
 using System;
+using AgentPortal.Menu;
 using AgentPortal.Services;
 
-namespace AgentPortal.Menu
+namespace AgentPortal.Handler
 {
     internal class AgentSelfServiceHandler : ManageAgentService
     {

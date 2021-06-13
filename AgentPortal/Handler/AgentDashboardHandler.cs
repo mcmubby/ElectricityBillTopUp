@@ -1,6 +1,7 @@
 using System;
+using AgentPortal.Menu;
 
-namespace AgentPortal.Menu
+namespace AgentPortal.Handler
 {
     public class AgentDashboardHandler
     {

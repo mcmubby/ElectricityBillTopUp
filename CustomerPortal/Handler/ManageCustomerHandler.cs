@@ -1,7 +1,8 @@
 using System;
+using CustomerPortal.Menu;
 using CustomerPortal.Services;
 
-namespace CustomerPortal.Menu
+namespace CustomerPortal.Handler
 {
     public class ManageCustomerHandler : ManageCustomerService
     {

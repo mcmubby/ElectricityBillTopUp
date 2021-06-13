@@ -4,7 +4,7 @@ using AgentPortal.AppData;
 using AgentPortal.Services;
 using PortalLibrary.Models;
 
-namespace AgentPortal.Menu
+namespace AgentPortal.Handler
 {
     internal class SubscriptionHandler : SubscriptionService
     {

@@ -1,5 +1,6 @@
 using System;
 using AgentPortal.AppData;
+using AgentPortal.Handler;
 
 namespace AgentPortal.Menu
 {
@@ -26,7 +27,6 @@ namespace AgentPortal.Menu
         {
             Console.Clear();
             AgentDashboardHandler.SelectService();
-           // ManageCustomerHandler.CustomerDashboard();
         }
     }
 }

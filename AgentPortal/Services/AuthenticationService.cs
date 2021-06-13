@@ -1,6 +1,4 @@
-using System;
 using AgentPortal.AppData;
-using PortalLibrary.AgentServices;
 using PortalLibrary.Models;
 
 namespace AgentPortal.Services

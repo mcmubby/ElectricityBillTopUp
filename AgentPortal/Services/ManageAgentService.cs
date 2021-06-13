@@ -1,12 +1,12 @@
 ﻿using System;
 using AgentPortal.AppData;
-using AgentPortal.Menu;
+using AgentPortal.Handler;
 using PortalLibrary.Models;
 
 namespace AgentPortal.Services
 {
 
-	public class ManageAgentService : AgentLibraryService
+    public class ManageAgentService : AgentLibraryService
 	{
 		protected static string AgentName = AgentApplicationData.CurrentAgentName;
 		protected static string AgentId = AgentApplicationData.CurrentAgentId;
