@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'CustomerPortal/**'
+    - 'CustomerPortal/**'
 
 jobs:
   build-and-publish:
@@ -25,4 +25,5 @@ jobs:
           dotnet build -c Release
           
       - name: 'Publish'
-        run: dotnet publish
+        run: |
+          dotnet publish
