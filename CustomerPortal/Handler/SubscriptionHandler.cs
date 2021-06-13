@@ -22,6 +22,7 @@ namespace CustomerPortal.Handler
             }
         }
         
+        //Update implementation from Agent portal
         private static void SubscribeCustomer()
         {
             List<Tarrif> tarrifs = new List<Tarrif>(GetTarrifData());
@@ -41,7 +42,7 @@ namespace CustomerPortal.Handler
             var response = Console.ReadLine();
             string tarrifId = "";
 
-            //Compares response with the tarrifId in tarrifs list
+            
             for (int i = 0; i < itemDic.Count; i++)
             {
                 if (response == itemDic[tarrifName[i]])

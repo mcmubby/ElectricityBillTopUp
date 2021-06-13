@@ -22,8 +22,17 @@ jobs:
       - name: 'Build project'
         shell: pwsh
         run: |
+          cd ./CustomerPortal
           dotnet build -c Release
           
       - name: 'Publish'
+        shell: pwsh
         run: |
+          cd ./CustomerPortal
           dotnet publish
+
+      - name: Upload Customer Portal Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Customer Portal
+          path: /home/runner/work/ElectricityBillTopUp/ElectricityBillTopUp/CustomerPortal/bin/Debug/net5.0/publish/

@@ -51,7 +51,6 @@ namespace AgentPortal.Handler
                         break;
 
                     case "5":
-                        //Go to main dashboard
                         onMainDashboard = false;
                         break;
 
