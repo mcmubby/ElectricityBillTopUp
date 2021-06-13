@@ -31,7 +31,6 @@ namespace CustomerPortal.Handler
 
             Console.WriteLine("Select subscription");
 
-            //Writes available tarrif to console
             foreach (var tarrif in tarrifs)
             {
                 Console.WriteLine($"{tarrif.Id}. {tarrif.Name} at {tarrif.PricePerUnit} kobo per unit");
