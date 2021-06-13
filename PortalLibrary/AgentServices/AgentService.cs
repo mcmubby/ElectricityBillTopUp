@@ -63,7 +63,7 @@ namespace PortalLibrary.AgentServices
 
          public Agent GetAgentById(string AgentId)
         {
-           Agent foundagent = fileService.database.Agents.Find(c => c.Id == agentId);
+           Agent foundagent = fileService.database.Agents.Find(c => c.Id == AgentId);
             if (foundagent != null)
             {
                 return foundagent;
