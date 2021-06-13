@@ -71,7 +71,7 @@ namespace AgentPortal.Handler
         }
 
 
-        //Agent registration
+        
 
         internal static void AgentRegistrationForm()
         {

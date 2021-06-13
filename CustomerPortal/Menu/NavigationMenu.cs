@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Threading;
 using CustomerPortal.AppData;
-using CustomerPortal.Services;
-using PortalLibrary.Models;
 
 namespace CustomerPortal.Menu
 {

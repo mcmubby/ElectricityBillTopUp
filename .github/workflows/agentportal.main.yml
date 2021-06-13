@@ -18,7 +18,13 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.202
-      
+
+    - name: 'Project Dependencies'
+        shell: pwsh
+        run: |
+          cd ./AgentPortal
+          dotnet restore
+
     - name: Build
       run: |
         cd ./AgentPortal
@@ -33,4 +39,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: Agent Portal
-        path: /home/runner/work/ElectricityBillTopUp/ElectricityBillTopUp/AgentPortal/bin/Debug/net5.0/publish/
+        path: D:\a\ElectricityBillTopUp\ElectricityBillTopUp\AgentPortal\bin\Debug\net5.0\publish\
