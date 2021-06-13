@@ -61,6 +61,30 @@ namespace PortalLibrary.AgentServices
             return "Failed, Customer not found";
         }
 
+         public Agent GetAgentById(string AgentId)
+        {
+           Agent foundagent = fileService.database.Agents.Find(c => c.Id == agentId);
+            if (foundagent != null)
+            {
+                return foundagent;
+            }
+            return null;
+        }
+
+         public string UpdateAgent(Agent modifiedAgent)
+        {
+            Agent agent = this.GetAgentById(modifiedAgent.Id);
+            if(agent != null)
+            {
+                fileService.SaveChanges();
+                return "SUCCESSFULLY UPDATED";
+            }
+            return "Failed, Customer not found";
+        }
+
+        
+
+
         public void SubscribeToTariff(CustomerSubscription customerSubscription)
         {
             Random r = new Random();
