@@ -3,7 +3,7 @@ using AgentPortal.Services;
 
 namespace AgentPortal.Menu
 {
-    internal class AgentSelfServiceHandler:ManageAgentService
+    internal class AgentSelfServiceHandler : ManageAgentService
     {
         internal static void AgentDashboard()
         {

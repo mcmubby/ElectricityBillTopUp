@@ -61,7 +61,7 @@ namespace PortalLibrary.AgentServices
             return "Failed, Customer not found";
         }
 
-         public Agent GetAgentById(string AgentId)
+         public Agent GetAgentById(string agentId)
         {
            Agent foundagent = fileService.database.Agents.Find(c => c.Id == agentId);
             if (foundagent != null)

@@ -8,8 +8,8 @@ namespace AgentPortal.Services
 
 	public class ManageAgentService : AgentLibraryService
 	{
-		 protected static string AgentName = AgentApplicationData.CurrentAgentName;
-		  protected static string AgentId = AgentApplicationData.CurrentAgentId;
+		protected static string AgentName = AgentApplicationData.CurrentAgentName;
+		protected static string AgentId = AgentApplicationData.CurrentAgentId;
         protected static Agent AgentDetail = service.GetAgentById(AgentId);
         protected static Agent foundAgentDetail=new Agent();
 
@@ -94,15 +94,12 @@ namespace AgentPortal.Services
 
             service.UpdateAgent(foundAgentDetail);
         }
-		 private static void PrintAgentDetails()
+
+
+		private static void PrintAgentDetails()
         {
             Console.WriteLine($"\n> First Name : {foundAgentDetail.FirstName} \n\n> Last Name : {foundAgentDetail.LastName} \n\n> Email Address : {foundAgentDetail.EmailAddress}");
             Console.WriteLine($"\n> Phone Number : {foundAgentDetail.PhoneNumber} \n\n");
         }
-		
-		
-       
-		
-
 	}
 }
