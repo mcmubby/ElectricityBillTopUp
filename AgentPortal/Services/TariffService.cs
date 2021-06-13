@@ -7,17 +7,28 @@ namespace AgentPortal.Services
     {
         protected static List<Tarrif> tariffs = new List<Tarrif>(service.GetAllTarrif());
 
-        protected static void AddNewTariffPlan(string id, string name, decimal pricePerUnit)
+        protected static string AddNewTariffPlan(string id, string name, decimal pricePerUnit)
         {
-            Tarrif tarrif = new Tarrif
-            {
-                Id = id,
-                Name = name,
-                PricePerUnit = pricePerUnit
-            };
+            var existingTariffId = tariffs.Find(c => c.Id == id);
 
-            tariffs.Add(tarrif);
-            UpdateTariffPlan();
+            if (existingTariffId == null)
+            {
+                Tarrif tarrif = new Tarrif
+                {
+                    Id = id,
+                    Name = name,
+                    PricePerUnit = pricePerUnit
+                };
+
+                tariffs.Add(tarrif);
+                UpdateTariffPlan();
+
+                return "Tariff added successfully.";
+            }
+            else
+            {
+                return "Tariff ID already exist";
+            }
         }
 
         protected static void DeleteTariffPlan(Tarrif tarrif)

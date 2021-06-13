@@ -10,8 +10,7 @@ namespace AgentPortal.Services
 	{
 		protected static string AgentName = AgentApplicationData.CurrentAgentName;
 		protected static string AgentId = AgentApplicationData.CurrentAgentId;
-        protected static Agent AgentDetail = service.GetAgentById(AgentId);
-        protected static Agent foundAgentDetail=new Agent();
+        protected static Agent foundAgentDetail = service.GetAgentById(AgentId);
 
 
         protected static void ViewAgentDetail()
@@ -36,6 +35,7 @@ namespace AgentPortal.Services
         {
             
             bool editAnother = true;
+            Console.Clear();
 
             while(editAnother)
             {

@@ -5,13 +5,13 @@ namespace AgentPortal.Menu
 {
     public class TariffHandler : TariffService
     {
-        public static void PrintAllTariffPlans()
+        private static void PrintAllTariffPlans()
         {
             Console.WriteLine($"Tariff ID \t\t\t Tariff Name \t\t\t\t Price Per Unit");
 
             foreach (var tariff in tariffs)
             {
-                Console.WriteLine($"\n{tariff.Id} \t\t\t\t  {tariff.Name} \t\t\t\t\t\t {tariff.PricePerUnit}");
+                Console.WriteLine($"\n{tariff.Id} \t\t\t\t {tariff.Name} \t\t\t\t {tariff.PricePerUnit}");
             }
         }
 
@@ -19,14 +19,16 @@ namespace AgentPortal.Menu
         {
             Console.Clear();
             PrintAllTariffPlans();
+            bool foundTariff = false;
 
-            Console.Write("Enter the ID of the tariff you want to edit : ");
+            Console.Write("\n\nEnter the ID of the tariff you want to edit : ");
             var response = Console.ReadLine();
 
             for (int i = 0; i < tariffs.Count; i++)
             {
-                if (response == tariffs[i].Id)
+                if (response == tariffs[i].Id && foundTariff == false)
                 {
+                    foundTariff = true;
                     Console.Clear();
                     Console.Write($"Enter a new price per unit for {tariffs[i].Name} (Current value : {tariffs[i].PricePerUnit}) : ");
                     var newPricePerUnit = Console.ReadLine();
@@ -35,15 +37,17 @@ namespace AgentPortal.Menu
 
                     UpdateTariffPlan();
                     Console.Clear();
+                    PrintAllTariffPlans();
                     Console.WriteLine("Tariff updated. \n\nPress any key to go back...");
                     Console.ReadKey();
                 }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Tariff not found. \n\nPress any key to go back...");
-                    Console.ReadKey();
-                }
+            }
+
+            if (foundTariff == false)
+            {
+                Console.Clear();
+                Console.WriteLine("Tariff not found. \n\nPress any key to go back...");
+                Console.ReadKey();
             }
         }
 
@@ -63,11 +67,11 @@ namespace AgentPortal.Menu
             var tariffPricePerUnit = Console.ReadLine();
             var pricePerUnit = ValidatePricePerUnit(tariffPricePerUnit);
 
-            AddNewTariffPlan(id,name,pricePerUnit);
+            var result = AddNewTariffPlan(id,name,pricePerUnit);
 
             Console.Clear();
             PrintAllTariffPlans();
-            Console.WriteLine("\n\nTariff added successfully. \n\nPress any key to go back...");
+            Console.WriteLine($"\n\n{result} \n\nPress any key to go back...");
             Console.ReadKey();
         }
 
@@ -76,7 +80,7 @@ namespace AgentPortal.Menu
             Console.Clear();
             PrintAllTariffPlans();
 
-            Console.Write("Enter the Tariff ID of the tariff you want to delete : ");
+            Console.Write("\n\nEnter the Tariff ID of the tariff you want to delete : ");
             var response = Console.ReadLine();
 
             var tariff = tariffs.Find(c => c.Id == response);
@@ -85,7 +89,8 @@ namespace AgentPortal.Menu
             {
                 DeleteTariffPlan(tariff);
                 Console.Clear();
-                Console.WriteLine("Tariff deleted. \n\nPress any key to go back...");
+                PrintAllTariffPlans();
+                Console.WriteLine("\n\nTariff deleted. \n\nPress any key to go back...");
                 Console.ReadKey();
             }
             else
@@ -96,9 +101,11 @@ namespace AgentPortal.Menu
             }
         }
 
-        private static void SelectAction()
+        public static void SelectAction()
         {
-            Console.Write("\n> Press 1 to Edit A Tariff Plan \n\n> Press 2 to Add A New Tariff Plan \n\n> Press 3 to Delete A Tariff Plan \n\n> ");
+            PrintAllTariffPlans();
+
+            Console.Write("\n\n> Press 1 to Edit A Tariff Plan \n\n> Press 2 to Add A New Tariff Plan \n\n> Press 3 to Delete A Tariff Plan \n\n> ");
             var response = Console.ReadLine();
 
             switch (response)
