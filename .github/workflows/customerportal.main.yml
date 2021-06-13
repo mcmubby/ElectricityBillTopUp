@@ -1,4 +1,4 @@
-name: 'Build and Publish Customer Portal'
+name: Build and Publish Customer Portal
 
 on:
   push:
@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - name: 'Checkout repository'
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: 'Setup .Net Environment'
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0
+          dotnet-version: 5.0.202
           
       - name: 'Build project'
         shell: pwsh
