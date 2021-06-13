@@ -32,8 +32,7 @@ jobs:
     - name: Publish
       shell: bash
       run: |
-        tag=$(git describe --tags --abbrev=0)
-        release_name="Agent-Portal-$tag"
+        release_name="Agent-Portal-beta"
 
         dotnet publish ./AgentPortal/AgentPortal.csproj -c Release -o "$release_name"
 
