@@ -19,7 +19,6 @@ namespace AgentPortal.Handler
             {
                 case "1":
                     AgentSelfServiceHandler.AgentDashboard();
-                    //go to the main dashboard
                 break;
 
                 case "2":

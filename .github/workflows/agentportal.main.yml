@@ -20,23 +20,30 @@ jobs:
         dotnet-version: 5.0.202
 
     - name: 'Project Dependencies'
-        shell: pwsh
-        run: |
-          cd ./AgentPortal
-          dotnet restore
-
-    - name: Build
+      shell: pwsh
       run: |
-        cd ./AgentPortal
-        dotnet build --configuration Release --no-restore
+        dotnet restore ./AgentPortal/AgentPortal.csproj
+
+    # - name: Build
+    #   run: |
+    #     cd ./AgentPortal
+    #     dotnet build --configuration Release --no-restore
 
     - name: Publish
+      shell: bash
       run: |
-        cd ./AgentPortal
-        dotnet publish
+        tag=$(git describe --tags --abbrev=0)
+        release_name="Agent-Portal-$tag"
 
-    - name: Upload Agent Portal Build Artifact
-      uses: actions/upload-artifact@v2
+        dotnet publish ./AgentPortal/AgentPortal.csproj -c Release -o "$release_name"
+
+        7z a -tzip "${release_name}.zip" "./${release_name}/*"
+
+        rm -r "$release_name"
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
       with:
-        name: Agent Portal
-        path: D:\a\ElectricityBillTopUp\ElectricityBillTopUp\AgentPortal\bin\Debug\net5.0\publish\
+        files: "AgentPortal*"
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
