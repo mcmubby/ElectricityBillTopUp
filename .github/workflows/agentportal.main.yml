@@ -18,7 +18,7 @@ jobs:
         dotnet-version: 5.0.202
  
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore ./AgentPortal/*
       
     - name: Build
       run: dotnet build --configuration Release --no-restore
