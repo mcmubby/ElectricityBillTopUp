@@ -6,7 +6,6 @@ namespace AgentPortal.Handler
     public class AgentDashboardHandler
     {
         //Agent self-service
-        //
 
         public static void SelectService()
         {

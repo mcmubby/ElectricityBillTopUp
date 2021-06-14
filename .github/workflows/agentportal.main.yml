@@ -14,11 +14,6 @@ jobs:
     steps:
     - name: Checkout Branch
       uses: actions/checkout@v2
-
-    - name: Setup Version ID
-      shell: bash
-      run: |
-        VERSION=`git describe --tags --abbrev=0` || VERSION="0.0.1-`git rev-parse --short HEAD`" ; echo "VERSION=$VERSION" >> $GITHUB_ENV
       
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -34,7 +29,8 @@ jobs:
     - name: Publish
       shell: bash
       run: |
-        release_name="Agent-Portal-$VERSION"
+        tag=$(git describe --tags --abbrev=0)
+        release_name="Agent-Portal-$tag"
 
         dotnet publish ./AgentPortal/AgentPortal.csproj -c Release -o "$release_name"
 
