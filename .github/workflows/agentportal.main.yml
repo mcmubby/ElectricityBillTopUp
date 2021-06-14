@@ -29,8 +29,7 @@ jobs:
     - name: Publish
       shell: bash
       run: |
-        tag=$(git describe --tags --abbrev=0)
-        release_name="Agent-Portal-$tag"
+        release_name="Agent-Portal"
 
         dotnet publish ./AgentPortal/AgentPortal.csproj -c Release -o "$release_name"
 
@@ -40,7 +39,8 @@ jobs:
 
     - name: Release
       uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: "AgentPortal*"
+        files: ${release_name}.zip
       env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
