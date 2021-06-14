@@ -22,7 +22,7 @@ namespace CustomerPortal.Handler
             }
         }
         
-        //Update implementation from Agent portal
+        //Update implementation from Agent  portal
         private static void SubscribeCustomer()
         {
             List<Tarrif> tarrifs = new List<Tarrif>(GetTarrifData());
