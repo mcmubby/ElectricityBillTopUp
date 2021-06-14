@@ -12,7 +12,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Branch
+      uses: actions/checkout@v2
+
+    - name: Setup Version ID
+      run: |
+        VERSION=`git describe --tags --abbrev=0` || VERSION="0.0.0-SNAPSHOT-`git rev-parse --short HEAD`" ; echo "VERSION=$VERSION" >> $GITHUB_ENV
       
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -24,16 +29,11 @@ jobs:
       run: |
         dotnet restore ./AgentPortal/AgentPortal.csproj
 
-    # - name: Build
-    #   run: |
-    #     cd ./AgentPortal
-    #     dotnet build --configuration Release --no-restore
 
     - name: Publish
       shell: bash
       run: |
-        tag=$(git tag -a v1.0.0)
-        release_name="Agent-Portal-$tag"
+        release_name="Agent-Portal-$VERSION"
 
         dotnet publish ./AgentPortal/AgentPortal.csproj -c Release -o "$release_name"
 
