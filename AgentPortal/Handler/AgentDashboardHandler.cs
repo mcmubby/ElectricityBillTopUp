@@ -5,8 +5,6 @@ namespace AgentPortal.Handler
 {
     public class AgentDashboardHandler
     {
-        //Agent self-servic
-
         public static void SelectService()
         {
             Console.Clear();
